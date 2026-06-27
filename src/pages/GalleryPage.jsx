@@ -4,91 +4,102 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import GallerySection from "@/components/GallerySection";
 import { gallerySections } from "@/data/galleryData";
+import Lightbox from "@/components/Lightbox";
+
+import heroImage from "@/assets/gallery/nature/nature9.jpeg";
 
 function GalleryPage() {
-
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [currentCollection, setCurrentCollection] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   function handleMediaClick(item, collection) {
+
     setSelectedMedia(item);
+
     setCurrentCollection(collection);
+
+    setCurrentIndex(collection.findIndex(i => i.src === item.src));
+
   }
+
   return (
     <>
       <Header />
-  
+
       <div className="min-h-screen bg-background">
-  
-        <section className="py-24 border-b">
-  
-          <div className="container mx-auto px-6">
-  
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: .6 }}
-              className="text-6xl font-bold mb-6"
-            >
-              Gallery
-            </motion.h1>
-  
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: .15, duration: .6 }}
-              className="max-w-3xl text-xl text-muted-foreground leading-relaxed"
-            >
-              A glimpse into everyday life at ERR GAUXH SPACE —
-              where learning happens through movement, creativity,
-              nature and community.
-            </motion.p>
-  
+
+        {/* HERO */}
+        <section className="relative h-[85vh] overflow-hidden">
+
+          <img
+            src={heroImage}
+            alt="Nubra Valley"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+
+          <div className="relative z-10 h-full flex items-center">
+
+            <div className="container mx-auto px-6">
+
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-5xl md:text-7xl font-bold text-white mb-6"
+              >
+                Life at <br />
+                ERR GAUXH SPACE
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.8 }}
+                className="max-w-2xl text-lg md:text-xl text-white/90 leading-relaxed"
+              >
+                Every photograph tells the story of children learning,
+                creating, exploring and growing together in the heart of
+                Ladakh's Nubra Valley.
+              </motion.p>
+
+            </div>
+
           </div>
-  
+
         </section>
-  
-        <div className="container mx-auto px-6 py-20">
-  
-          {gallerySections.map(section => (
+
+        {/* GALLERY */}
+
+        <section className="container mx-auto px-6 py-14">
+
+          {gallerySections.map((section) => (
             <GallerySection
               key={section.title}
               {...section}
               onMediaClick={handleMediaClick}
             />
           ))}
-  
-        </div>
-  
-        {selectedMedia && (
-          <div className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center">
-  
-            <button
-              onClick={() => setSelectedMedia(null)}
-              className="absolute top-8 right-8 text-white text-5xl hover:text-gray-300"
-            >
-              ×
-            </button>
-  
-            {selectedMedia.type === "image" ? (
-              <img
-                src={selectedMedia.src}
-                className="max-w-[90vw] max-h-[85vh] rounded-xl"
-              />
-            ) : (
-              <video
-                src={selectedMedia.src}
-                controls
-                autoPlay
-                className="max-w-[90vw] max-h-[85vh] rounded-xl"
-              />
-            )}
-  
-          </div>
-        )}
-  
+
+        </section>
+
+        {/* LIGHTBOX */}
+
+        <Lightbox
+          media={selectedMedia}
+          currentIndex={currentIndex}
+          setCurrentIndex={(index) => {
+            setCurrentIndex(index);
+            setSelectedMedia(currentCollection[index]);
+          }}
+          collection={currentCollection}
+          onClose={() => setSelectedMedia(null)}
+        />
+
       </div>
-  
+
       <Footer />
     </>
   );

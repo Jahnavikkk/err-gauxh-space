@@ -74,7 +74,7 @@ const art = import.meta.glob("../assets/gallery/art/*", {
     },
   
     {
-      title: "Nature Learning",
+      title: "Learning in Nature",
       description:
         "The mountains themselves become the classroom, where every walk, observation and season offers a lesson.",
       media: convert(nature),

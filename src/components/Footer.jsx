@@ -64,7 +64,7 @@ function Footer() {
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:bg-background transition-all duration-200" aria-label="Facebook">
                 <Facebook className="h-4 w-4" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:bg-background transition-all duration-200" aria-label="Instagram">
+              <a href="https://www.instagram.com/err_gauxh_space?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:bg-background transition-all duration-200" aria-label="Instagram">
                 <Instagram className="h-4 w-4" />
               </a>
               <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:bg-background transition-all duration-200" aria-label="YouTube">

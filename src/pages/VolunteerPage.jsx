@@ -77,7 +77,7 @@ function VolunteerPage() {
               >
                 <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                   <img
-                    src="https://images.unsplash.com/photo-1641865065818-d9c8ef6ad9c7"
+                    src="src/assets/gallery/community/community6.jpeg"
                     alt="Volunteers and students engaged in outdoor learning activities in the Nubra Valley"
                     className="w-full h-full object-cover"
                   />
@@ -202,7 +202,7 @@ function VolunteerPage() {
                     <strong className="text-foreground">Physical requirements:</strong> Hunder sits at 3,200 meters elevation. You should be in good health and able to adapt to high-altitude conditions. We recommend arriving a few days early to acclimatize.
                   </p>
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    <strong className="text-foreground">Minimum commitment:</strong> We ask for at least two weeks to ensure continuity for students. Longer commitments (1-6 months) are especially valuable.
+                    <strong className="text-foreground">Minimum commitment:</strong> We ask for at least one week to ensure continuity for students. Longer commitments (1-3 months) are especially valuable.
                   </p>
                   <p className="text-muted-foreground leading-relaxed mb-4">
                     <strong className="text-foreground">Cultural sensitivity:</strong> Volunteers should be respectful of local customs, open to learning, and comfortable living simply in a remote community.

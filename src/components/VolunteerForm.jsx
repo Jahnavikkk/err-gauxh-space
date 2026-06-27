@@ -16,7 +16,7 @@ function VolunteerForm() {
     availability: '',
     skills: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -61,29 +61,60 @@ function VolunteerForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
+  
     if (!validate()) {
       return;
     }
+  
+    const message = `🌿 *Volunteer Application - ERR GAUXH SPACE*
 
-    setIsSubmitting(true);
+━━━━━━━━━━━━━━
 
-    // Simulate API call
-    setTimeout(() => {
-      toast.success('Application submitted successfully. We will contact you soon.');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        experience: '',
-        motivation: '',
-        availability: '',
-        skills: '',
-      });
-      setIsSubmitting(false);
-    }, 1500);
+*Name*
+${formData.name}
+
+*Email*
+${formData.email}
+
+*Phone*
+${formData.phone || "Not provided"}
+
+*Availability*
+${formData.availability}
+
+*Relevant Experience*
+${formData.experience || "Not provided"}
+
+*Skills / Interests*
+${formData.skills || "Not provided"}
+
+*Why I want to volunteer*
+${formData.motivation}
+
+━━━━━━━━━━━━━━
+
+Thank you!`;
+  
+    const whatsappURL = `https://wa.me/919650494565?text=${encodeURIComponent(
+      message
+    )}`;
+  
+    toast.success("Redirecting to WhatsApp...");
+  
+    window.open(whatsappURL, "_blank");
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      experience: "",
+      motivation: "",
+      availability: "",
+      skills: "",
+    });
+    
+    setErrors({});
   };
 
   return (
@@ -142,11 +173,11 @@ function VolunteerForm() {
               <SelectValue placeholder="Select duration" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="1-2-weeks">1-2 weeks</SelectItem>
-              <SelectItem value="1-month">1 month</SelectItem>
-              <SelectItem value="2-3-months">2-3 months</SelectItem>
-              <SelectItem value="3-6-months">3-6 months</SelectItem>
-              <SelectItem value="6-months-plus">6+ months</SelectItem>
+            <SelectItem value="1–2 weeks">1–2 weeks</SelectItem>
+            <SelectItem value="1 month">1 month</SelectItem>
+            <SelectItem value="2–3 months">2–3 months</SelectItem>
+            <SelectItem value="3–6 months">3–6 months</SelectItem>
+            <SelectItem value="6+ months">6+ months</SelectItem>
             </SelectContent>
           </Select>
           {errors.availability && (
@@ -195,13 +226,14 @@ function VolunteerForm() {
           <p className="text-sm text-destructive">{errors.motivation}</p>
         )}
       </div>
-
+      <p className="text-sm text-muted-foreground">
+        Clicking the button will open WhatsApp with your application pre-filled. Simply review it and press <strong>Send</strong>.
+      </p>
       <Button
         type="submit"
-        disabled={isSubmitting}
         className="w-full md:w-auto bg-primary text-primary-foreground hover:bg-primary/90 active:scale-[0.98] transition-all duration-200"
       >
-        {isSubmitting ? 'Submitting...' : 'Submit application'}
+        Send Application via WhatsApp →
       </Button>
     </form>
   );
